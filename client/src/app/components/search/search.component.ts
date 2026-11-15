@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { ArtistData } from '../../data/artist-data';
 import { AlbumData } from '../../data/album-data';
@@ -12,19 +12,33 @@ import { ResourceData } from '../../data/resource-data';
     providers: [SpotifyService],
     standalone: false
 })
-export class SearchComponent implements OnInit {
-  searchString:string;
+export class 
+SearchComponent implements OnInit {
+  searchString = "";
   searchCategory:string = 'artist';
   searchCategories:string[] = ['artist', 'album', 'track'];
-  resources:ResourceData[];
+  resources: ResourceData[] = [];
+  tracks: TrackData[] = [];
+  service:SpotifyService;
 
-  constructor(private spotifyService:SpotifyService) { }
+  constructor(private spotifyService:SpotifyService) {
+     this.service = inject(SpotifyService);
+   }
 
   ngOnInit() {
   }
 
   search() {
     //TODO: call search function in spotifyService and parse response
+     this.spotifyService.searchFor(this.searchCategory, this.searchString).then((resources) => {
+    if (this.searchCategory === 'track') {
+      this.tracks = resources as TrackData[];
+      this.resources = [];
+    } else {
+      this.resources = resources;
+      this.tracks = [];
+    }
+  });
   }
 
 }
