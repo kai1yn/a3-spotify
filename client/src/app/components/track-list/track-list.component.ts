@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, inject } from '@angular/core';
 import { TrackData } from '../../data/track-data';
+import { SpotifyService } from 'src/app/services/spotify.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-track-list',
@@ -8,11 +10,16 @@ import { TrackData } from '../../data/track-data';
     standalone: false
 })
 export class TrackListComponent implements OnInit {
-	@Input() tracks:TrackData[];
+	@Input() tracks:TrackData[] | undefined;
 	@Input() hideArtist:boolean = false;
 	@Input() hideAlbum:boolean = false;
+  service:SpotifyService;
+  router:Router;
 
-  constructor() { }
+  constructor() {
+      this.service = inject(SpotifyService);
+      this.router = inject(Router);
+   }
 
   ngOnInit() {
   }

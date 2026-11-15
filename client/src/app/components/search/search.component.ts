@@ -17,8 +17,8 @@ SearchComponent implements OnInit {
   searchString = "";
   searchCategory:string = 'artist';
   searchCategories:string[] = ['artist', 'album', 'track'];
-  resources: ResourceData[] = [];
-  tracks: TrackData[] = [];
+  resources: ResourceData[] | undefined;
+  tracks: TrackData[] | undefined;
   service:SpotifyService;
 
   constructor(private spotifyService:SpotifyService) {
