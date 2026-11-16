@@ -32,6 +32,10 @@ export class AlbumPageComponent implements OnInit {
         this.album = data;
       });
 
+      this.service.getTracksForAlbum(this.albumId).then((data) => {
+        this.tracks = data;
+      });
+      
     //TODO: inject spotifyService and use it to get the album data and the tracks for the album
   }
 
