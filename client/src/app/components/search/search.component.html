@@ -15,7 +15,8 @@
 	@if (searchCategory === 'artist' || searchCategory === 'album') {
 		<app-carousel [resources]="resources" carouselId="searchCarousel"></app-carousel>
 	}
-	@if (searchCategory === 'track') {
-		<app-track-list [tracks]="resources"></app-track-list>
-	}
+	
 }
+@if (tracks && searchCategory === 'track') {
+		<app-track-list [tracks]="tracks"></app-track-list>
+	}

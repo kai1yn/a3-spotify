@@ -33,10 +33,10 @@ SearchComponent implements OnInit {
      this.spotifyService.searchFor(this.searchCategory, this.searchString).then((resources) => {
     if (this.searchCategory === 'track') {
       this.tracks = resources as TrackData[];
-      this.resources = [];
+      this.resources = undefined;
     } else {
       this.resources = resources;
-      this.tracks = [];
+      this.tracks = undefined;
     }
   });
   }
