@@ -25,7 +25,7 @@
 					<td>{{ track.durationStr }}</td>
 					<!--TODO: Use @if to hide if hideArtist is true; link to the first artist's endpoint and display the first artist's name-->
 					@if(!hideArtist) {
-						<td><a [routerLink]="['/artist', track.artists[0].id]">{{ track.artists[0].name }}</a></td>
+						<td><a [routerLink]="['/artist', track.artists?.[0]?.id]">{{ track.artists?.[0]?.name }}</a></td>
 					}
 					<!--TODO: Use @if to hide if hideAlbum is true; link to the album's endpoint and display the album's name-->
 					@if(!hideAlbum) {

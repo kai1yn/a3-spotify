@@ -9,10 +9,11 @@
 			</p>
 			<div>
 				<!--TODO: loop over track's artists-->
-				<p>
-					<!--TODO: link to artist page, display artist name-->
-					Artist: <a [routerLink]="['/artist', artist.id]" *ngFor="let artist of track.artists">{{ artist.name }}</a>
-				</p>
+				@for(artist of track.artists; track artist.id) {
+					<p>
+						Artist: <a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a>
+					</p>
+				}
 			</div>
 			<p>
 				<!--TODO: populate with track duration-->

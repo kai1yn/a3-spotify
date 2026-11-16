@@ -66,7 +66,7 @@ export class SpotifyService {
   getTopTracksForArtist(artistId:string):Promise<TrackData[]> {
     //TODO: use the top tracks endpoint to make a request to express.
     const encodedArtistId = encodeURIComponent(artistId);
-    return this.sendRequestToExpress(`/artist/${encodedArtistId}/top-tracks`).then((data) => {
+    return this.sendRequestToExpress(`/artist-top-tracks/${encodedArtistId}`).then((data) => {
       return data.tracks.map((track: any) => new TrackData(track));
     });
   }
@@ -74,8 +74,8 @@ export class SpotifyService {
   getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
     //TODO: use the albums for an artist endpoint to make a request to express.
     const encodedArtistId = encodeURIComponent(artistId);
-    return this.sendRequestToExpress(`/artist/${encodedArtistId}/albums`).then((data) => {
-      return data.albums.items.map((album: any) => new AlbumData(album));
+    return this.sendRequestToExpress(`/artist-albums/${encodedArtistId}`).then((data) => {
+      return data.items.map((album: any) => new AlbumData(album));
     });
   }
 
@@ -90,8 +90,8 @@ export class SpotifyService {
   getTracksForAlbum(albumId:string):Promise<TrackData[]> {
     //TODO: use the tracks for album endpoint to make a request to express.
     const encodedAlbumId = encodeURIComponent(albumId);
-    return this.sendRequestToExpress(`/album/${encodedAlbumId}/tracks`).then((data) => {
-      return data.tracks.map((track: any) => new TrackData(track));
+    return this.sendRequestToExpress(`/album-tracks/${encodedAlbumId}`).then((data) => {
+    return data.items.map((track: any) => new TrackData(track));
     });
   }
 
